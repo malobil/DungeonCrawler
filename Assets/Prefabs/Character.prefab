@@ -129,8 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98bc73296811114d8dcb6216c65592d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_moveSpeed: 2
-  m_camera: {fileID: 0}
+  m_moveSpeed: 3
+  m_positionDeadZone: 0.05
+  m_rotationSpeed: 180
+  m_rotationDeadZone: 2
 --- !u!114 &295742164
 MonoBehaviour:
   m_ObjectHideFlags: 0

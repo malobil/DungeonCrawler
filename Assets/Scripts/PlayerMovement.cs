@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float m_moveSpeed = 2f;
+    [SerializeField] private float m_positionDeadZone = 0.2f;
     [SerializeField] private float m_rotationSpeed= 10f;
+    [SerializeField] private float m_rotationDeadZone= 2f;
 
     private bool isMoving = false;
     private bool isTurning = false;
@@ -31,8 +33,9 @@ public class PlayerMovement : MonoBehaviour
             float step = m_moveSpeed * Time.deltaTime; // calculate distance to move
             transform.position = Vector3.MoveTowards(transform.position, destinationPosition, step);
 
-            if(transform.position == destinationPosition)
+            if(Vector3.Distance(transform.position, destinationPosition) <= m_positionDeadZone)
             {
+                transform.position = destinationPosition;
                 isMoving = false;
             }
        }
@@ -42,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation,m_rotationSpeed * Time.deltaTime);
             Debug.Log(Quaternion.Angle(transform.rotation, targetRotation));
 
-            if(Quaternion.Angle(transform.rotation, targetRotation) <= 1)
+            if(Quaternion.Angle(transform.rotation, targetRotation) <= m_rotationDeadZone)
             {
                 transform.rotation = targetRotation;
                 isTurning = false;

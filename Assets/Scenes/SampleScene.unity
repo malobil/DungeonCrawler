@@ -321,11 +321,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765962909150890539, guid: 1d12278012c27e042a3aa90bb2d12db9, type: 3}
       propertyPath: m_moveSpeed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8765962909150890539, guid: 1d12278012c27e042a3aa90bb2d12db9, type: 3}
       propertyPath: m_rotationSpeed
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8765962909150890539, guid: 1d12278012c27e042a3aa90bb2d12db9, type: 3}
+      propertyPath: m_positionDeadZone
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d12278012c27e042a3aa90bb2d12db9, type: 3}
