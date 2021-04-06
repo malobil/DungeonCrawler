@@ -6,9 +6,11 @@ public class GridManager : MonoBehaviour
 {
 	[SerializeField] private Vector2 m_gridHeight;
 	[SerializeField] private float m_cellGap = 1f ;
-	[SerializeField] private CustomGrid m_gameGrid;
 
+	[SerializeField] private bool m_spawnDebugGrid = false ;
 	[SerializeField] private GameObject m_classicCellPrefab;
+
+	private CustomGrid m_gameGrid = new CustomGrid() ;
 
 	public static GridManager Instance { get; set ; }
 
@@ -37,8 +39,19 @@ public class GridManager : MonoBehaviour
 				newCell.CellPosition = new Vector2(i, y);
 
 				newCell.CurrentCellType = (CellType)Random.Range(0, System.Enum.GetValues(typeof(CellType)).Length);
+				
+				GameObject newCellPrefab;
 
-				GameObject newCellPrefab = Instantiate(m_classicCellPrefab, newCell.CellWorldPosition,Quaternion.identity, transform);
+				if(m_spawnDebugGrid)
+                {
+					newCellPrefab = Instantiate(m_classicCellPrefab, newCell.CellWorldPosition, Quaternion.identity, transform);
+				}
+				else
+                {
+					newCellPrefab = new GameObject();
+					newCellPrefab.transform.position = newCell.CellWorldPosition;
+					newCellPrefab.transform.SetParent(transform);
+				}
 
 				newCell.CellPrefab = newCellPrefab;
 				m_gameGrid.Cells.Add(newCell);
